@@ -1,9 +1,12 @@
-#include <QWidget>
-
 #include "digitalclock.h"
+
+#include <QWidget>
 
 DigitalClock::DigitalClock(QWidget *parent): QLCDNumber (parent){
     setSegmentStyle(Filled);
+    QPalette *p = new QPalette;
+    p->setColor(QPalette::WindowText, Qt::green);
+    setPalette(*p);
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &DigitalClock::showTime);
@@ -11,8 +14,8 @@ DigitalClock::DigitalClock(QWidget *parent): QLCDNumber (parent){
 
     showTime();
 
-    setWindowTitle("Digital Clock");
-    resize(150,60);
+    //setWindowTitle("Digital Clock");
+    //resize(150,60);
 }
 
 void DigitalClock::showTime(){
